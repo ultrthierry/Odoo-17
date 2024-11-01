@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build .github/build-odoo-image/ --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build .github/build-odoo-image/ --file .github/build-odoo-image/Dockerfile --tag my-image-name:$(date +%s)
