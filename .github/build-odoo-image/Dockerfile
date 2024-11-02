@@ -1,5 +1,4 @@
-ARG DISTRIBUTION=buster
-FROM debian:${DISTRIBUTION}-slim
+FROM debian:buster-slim
 MAINTAINER Odoo S.A. <info@odoo.com>
 
 # Generate locale C.UTF-8 for postgres and general locale data
@@ -48,27 +47,17 @@ RUN set -x \
 RUN set -x; \
     npm install -g rtlcss
 
-# Install and build Odoo dependencies
+# Install Odoo
 ARG ODOO_VERSION=main
-ARG ODOO_SOURCE=odoo-17/blob
-ADD https://github.com/ultrthierry/$ODOO_SOURCE/$ODOO_VERSION/requirements.txt /build/odoo/requirements.txt
-COPY --chmod=700 build/ /build/
-RUN apt-get -qq update \
-    && xargs -a /build/install/${DISTRIBUTION}/apt-build-deps.txt apt-get install -yqq --no-install-recommends \
-    # Python Packages
-    && pip install --no-cache-dir \
-        --requirement /build/odoo/requirements.txt \
-        --requirement /build/requirements.txt \
-        --requirement /build/extra-requirements.txt \
-        --requirement /build/test-requirements.txt \
-        --constraint /build/odoo/requirements.txt \
-    && (python3 -m compileall -q /usr/local/lib/python3*/ || true) \
-    # Cleanup
-    && xargs -a /build/install/${DISTRIBUTION}/apt-build-deps.txt apt-get purge -yqq \
-    && apt-get autopurge -yqq \
-    && rm -rf /var/lib/apt/lists/* /tmp/* \
-    && rm -rf /build \
-    && sync
+ARG ODOO_SOURCE=odoo-17
+ARG ODOO_SHA=c72896852e6a6aa730db366a96d2602d91317bfa
+RUN set -x; \
+        curl -o odoo.deb -sSL https://github.com/ultrthierry/odoo-17/${ODOO_SOURCE}/${ODOO_VERSION} \
+        && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
+        && dpkg --force-depends -i odoo.deb \
+        && apt-get update \
+        && apt-get -y install -f --no-install-recommends \
+        && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Mettre à jour pip pour éviter les erreurs de compatibilité
 RUN pip3 install --upgrade pip
