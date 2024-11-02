@@ -31,6 +31,10 @@ RUN apt-get update && apt-get install -y \
 # && apt-get install -y postgresql-client \
 # && rm -rf /var/lib/apt/lists/*
 
+# Vérifiez que python3 et pip sont installés correctement
+RUN python3 --version
+RUN pip3 --version
+
 # Mettre à jour pip pour éviter les erreurs de compatibilité
 RUN python3 -m pip install --upgrade pip setuptools wheel
 
