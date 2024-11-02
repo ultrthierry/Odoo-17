@@ -36,7 +36,8 @@ RUN python3 --version
 RUN pip3 --version
 
 # Mettre à jour pip pour éviter les erreurs de compatibilité
-RUN python3 -m pip install --upgrade pip setuptools wheel
+RUN pip3 install --upgrade 
+RUN pip3 setuptools wheel
 
 # Install Odoo
 ENV ODOO_VERSION 17.0
