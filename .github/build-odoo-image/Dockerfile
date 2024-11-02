@@ -49,7 +49,7 @@ RUN set -x; \
 
 # Install and build Odoo dependencies
 ARG ODOO_VERSION=main
-ARG ODOO_SOURCE=odoo-17
+ARG ODOO_SOURCE=odoo-17/blob
 ADD https://github.com/ultrthierry/$ODOO_SOURCE/$ODOO_VERSION/requirements.txt /build/odoo/requirements.txt
 COPY --chmod=700 build/ /build/
 RUN apt-get -qq update \
