@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:buster-slim
 MAINTAINER Odoo S.A. <info@odoo.com>
 
 # Generate locale C.UTF-8 for postgres and general locale data
@@ -10,17 +10,6 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     python3-dev \
-    python3-num2words \
-    python3-phonenumbers \
-    python3-pyldap \
-    python3-qrcode \
-    python3-renderpm \
-    python3-setuptools \
-    python3-slugify \
-    python3-vobject \
-    python3-watchdog \
-    python3-xlrd \
-    python3-xlwt \
     libxml2-dev \
     libxslt1-dev \
     zlib1g-dev \
