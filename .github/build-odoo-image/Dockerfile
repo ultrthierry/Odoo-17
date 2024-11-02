@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 # && rm -rf /var/lib/apt/lists/*
 
 # Mettre à jour pip pour éviter les erreurs de compatibilité
-RUN pip3 install --upgrade pip setuptools wheel
+RUN python3 -m pip install --upgrade pip setuptools wheel
 
 # Install Odoo
 ENV ODOO_VERSION 17.0
