@@ -59,6 +59,8 @@ RUN set -x; \
         && apt-get -y install -f --no-install-recommends \
         && rm -rf /var/lib/apt/lists/* odoo.deb
 
+# Mettre à jour pip pour éviter les erreurs de compatibilité
+RUN pip3 install --upgrade pip
 # Copy entrypoint script and Odoo configuration file
 RUN pip3 install paramiko
 COPY ./entrypoint.sh /
