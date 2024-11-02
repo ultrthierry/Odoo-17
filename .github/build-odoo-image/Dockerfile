@@ -1,4 +1,5 @@
-FROM debian:buster-slim
+ARG DISTRIBUTION=buster
+FROM debian:${DISTRIBUTION}-slim
 MAINTAINER Odoo S.A. <info@odoo.com>
 
 # Generate locale C.UTF-8 for postgres and general locale data
