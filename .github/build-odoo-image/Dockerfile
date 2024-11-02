@@ -10,6 +10,17 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     python3-dev \
+    python3-num2words \
+    python3-phonenumbers \
+    python3-pyldap \
+    python3-qrcode \
+    python3-renderpm \
+    python3-setuptools \
+    python3-slugify \
+    python3-vobject \
+    python3-watchdog \
+    python3-xlrd \
+    python3-xlwt \
     libxml2-dev \
     libxslt1-dev \
     zlib1g-dev \
@@ -31,13 +42,8 @@ RUN apt-get update && apt-get install -y \
 # && apt-get install -y postgresql-client \
 # && rm -rf /var/lib/apt/lists/*
 
-# Vérifiez que python3 et pip sont installés correctement
-RUN python3 --version
-RUN pip3 --version
-
 # Mettre à jour pip pour éviter les erreurs de compatibilité
-RUN pip3 install --upgrade 
-RUN pip3 setuptools wheel
+RUN pip3 install --upgrade pip setuptools wheel
 
 # Install Odoo
 ENV ODOO_VERSION 17.0
