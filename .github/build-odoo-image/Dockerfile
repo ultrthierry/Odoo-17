@@ -47,17 +47,27 @@ RUN set -x \
 RUN set -x; \
     npm install -g rtlcss
 
-# Install Odoo
-ENV ODOO_VERSION 13.0
-ARG ODOO_RELEASE=20200301
-ARG ODOO_SHA=c72896852e6a6aa730db366a96d2602d91317bfa
-RUN set -x; \
-        curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
-        && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
-        && dpkg --force-depends -i odoo.deb \
-        && apt-get update \
-        && apt-get -y install -f --no-install-recommends \
-        && rm -rf /var/lib/apt/lists/* odoo.deb
+# Install and build Odoo dependencies
+ARG ODOO_VERSION=main
+ARG ODOO_SOURCE=odoo-17
+ADD https://github.com/ultrthierry/$ODOO_SOURCE/$ODOO_VERSION/requirements.txt /build/odoo/requirements.txt
+COPY --chmod=700 build/ /build/
+RUN apt-get -qq update \
+    && xargs -a /build/install/${DISTRIBUTION}/apt-build-deps.txt apt-get install -yqq --no-install-recommends \
+    # Python Packages
+    && pip install --no-cache-dir \
+        --requirement /build/odoo/requirements.txt \
+        --requirement /build/requirements.txt \
+        --requirement /build/extra-requirements.txt \
+        --requirement /build/test-requirements.txt \
+        --constraint /build/odoo/requirements.txt \
+    && (python3 -m compileall -q /usr/local/lib/python3*/ || true) \
+    # Cleanup
+    && xargs -a /build/install/${DISTRIBUTION}/apt-build-deps.txt apt-get purge -yqq \
+    && apt-get autopurge -yqq \
+    && rm -rf /var/lib/apt/lists/* /tmp/* \
+    && rm -rf /build \
+    && sync
 
 # Mettre à jour pip pour éviter les erreurs de compatibilité
 RUN pip3 install --upgrade pip
