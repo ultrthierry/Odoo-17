@@ -26,7 +26,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: .  # Construit l'image à partir du répertoire courant
+          context: .github/workflows  # Construit l'image à partir du répertoire courant
           push: true  # Pousse l'image vers Docker Hub
           tags: mydockerhubuser/odoo-image:latest
 
