@@ -28,7 +28,7 @@ jobs:
         with:
           context: .github/workflows  # Construit l'image à partir du répertoire courant
           push: true  # Pousse l'image vers Docker Hub
-          tags: 12021997/odoo-learning:latest-4
+          tags: 12021997/odoo-learning:latest-5
 
       - name: Image Digest
         run: echo "Image pushed with digest ${{ steps.docker-meta.outputs.digest }}"
