@@ -31,6 +31,9 @@ RUN apt-get update && apt-get install -y \
 # Mettre à jour pip pour éviter les erreurs de compatibilité
 RUN pip3 install --upgrade pip setuptools wheel
 
+# Mettre à jour pip et installer Odoo ou autres dépendances
+RUN python3.10 -m pip install --upgrade pip
+
 # Lien symbolique pour forcer l'utilisation de python3.10
 RUN ln -sf /usr/local/bin/python3.10 /usr/local/bin/python
 
