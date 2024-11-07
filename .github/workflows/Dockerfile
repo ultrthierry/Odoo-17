@@ -54,7 +54,7 @@ WORKDIR /odoo
 RUN pip3 install -r requirements.txt
 
 # Expose Odoo services
-EXPOSE 8069 8071
+# EXPOSE 8069 8071
 
 # Démarrer Odoo
-CMD ["python3", "-m", "odoo"]
+# CMD ["python3", "-m", "odoo"]
