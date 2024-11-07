@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python3.10 --version
 # install latest postgresql-client
 # RUN set -x \
 # echo "deb http://apt.postgresql.org/pub/repos/apt/ jammy-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
@@ -31,6 +30,9 @@ RUN python3.10 --version
 
 # Mettre à jour pip pour éviter les erreurs de compatibilité
 RUN pip3 install --upgrade pip setuptools wheel
+
+# Lien symbolique pour forcer l'utilisation de python3.10
+RUN ln -sf /usr/local/bin/python3.10 /usr/local/bin/python
 
 # Install Odoo
 ENV ODOO_VERSION 17.0
