@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 MAINTAINER Odoo S.A. <info@odoo.com>
 
 # Generate locale C.UTF-8 for postgres and general locale data
@@ -6,9 +6,6 @@ ENV LANG C.UTF-8
 
 # Installer les dépendances requises
 RUN apt-get update && apt-get install -y \
-    software-properties-common \
-    && add-apt-repository 'deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main' \
-    && apt-get update && apt-get install -y \
     git \
     python3.10 \
     python3-pip \
