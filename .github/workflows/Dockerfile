@@ -7,7 +7,7 @@ ENV LANG C.UTF-8
 # Installer les dépendances requises
 RUN apt-get update && apt-get install -y \
     git \
-    python3 \
+    python3.10 \
     python3-pip \
     python3-dev \
     libxml2-dev \
