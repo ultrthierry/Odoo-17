@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM python:3.10-slim-buster
 MAINTAINER Odoo S.A. <info@odoo.com>
 
 # Generate locale C.UTF-8 for postgres and general locale data
@@ -7,9 +7,6 @@ ENV LANG C.UTF-8
 # Installer les dépendances requises
 RUN apt-get update && apt-get install -y \
     git \
-    python3.10 \
-    python3-pip \
-    python3-dev \
     libxml2-dev \
     libxslt1-dev \
     zlib1g-dev \
