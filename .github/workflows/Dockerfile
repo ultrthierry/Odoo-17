@@ -1,4 +1,4 @@
-FROM python:3.11-slim-buster
+FROM python:3.10-slim-buster
 MAINTAINER Odoo S.A. <info@odoo.com>
 
 # Generate locale C.UTF-8 for postgres and general locale data
