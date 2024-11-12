@@ -48,7 +48,7 @@ ARG GITHUB_USER=ultrthierry
 ARG ODOO_REPO=odoo-17
 ARG ODOO_BRANCH=main
 
-RUN groupadd -r odoo17 && useradd -r -g odoo odoo17
+RUN groupadd -r odoo17 && useradd -r -g odoo17 odoo17
 
 # Cloner la branche spécifique de votre dépôt Odoo
 RUN git clone -b ${ODOO_BRANCH} https://github.com/${GITHUB_USER}/${ODOO_REPO}.git /odoo
