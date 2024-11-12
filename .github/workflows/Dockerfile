@@ -58,8 +58,10 @@ RUN git clone -b ${ODOO_BRANCH} https://github.com/${GITHUB_USER}/${ODOO_REPO}.g
 WORKDIR /odoo
 
 COPY odoo.conf /etc/odoo/odoo.conf
-RUN chown odoo17:odoo17 /etc/odoo/odoo.conf
+
 RUN ls -l /etc/odoo/odoo.conf
+
+RUN chown odoo17:odoo17 /etc/odoo/odoo.conf
 
 # RUN python3 -m pip --version
 # Vérifier la version de Python
