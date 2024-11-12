@@ -50,7 +50,7 @@ RUN git clone -b ${ODOO_BRANCH} https://github.com/${GITHUB_USER}/${ODOO_REPO}.g
 # Se déplacer dans le répertoire Odoo
 WORKDIR /odoo
 
-RUN cp /odoo/debian/odoo.conf /etc/odoo/odoo.conf
+COPY /odoo/debian/odoo.conf /etc/odoo/odoo.conf
 
 # Installer les dépendances Python pour Odoo
 RUN pip3 install -r requirements.txt
