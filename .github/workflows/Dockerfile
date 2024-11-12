@@ -47,7 +47,7 @@ ARG ODOO_BRANCH=main
 # Cloner la branche spécifique de votre dépôt Odoo
 RUN git clone -b ${ODOO_BRANCH} https://github.com/${GITHUB_USER}/${ODOO_REPO}.git /odoo
 
-COPY /opt/odoo/odoo-17/debian/odoo.conf /etc/odoo/odoo.conf
+COPY /odoo/odoo-17/debian/odoo.conf /etc/odoo/odoo.conf
 
 # Se déplacer dans le répertoire Odoo
 WORKDIR /odoo
