@@ -54,9 +54,10 @@ RUN git clone -b ${ODOO_BRANCH} https://github.com/${GITHUB_USER}/${ODOO_REPO}.g
 WORKDIR /odoo
 
 COPY odoo.conf /etc/odoo/odoo.conf
+COPY requirements.txt /odoo/requirements.txt
 
 # Installer les dépendances Python pour Odoo
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Expose Odoo services
 # EXPOSE 8069 8071
