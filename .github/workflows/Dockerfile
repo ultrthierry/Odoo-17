@@ -7,6 +7,7 @@ ENV LANG C.UTF-8
 # Installer les dépendances requises
 RUN apt-get update && apt-get install -y \
     git \
+    python3-pip \
     libxml2-dev \
     libxslt1-dev \
     zlib1g-dev \
@@ -55,8 +56,10 @@ WORKDIR /odoo
 
 COPY odoo.conf /etc/odoo/odoo.conf
 
+RUN python3 -m pip --version
+
 # Installer les dépendances Python pour Odoo
-RUN pip3 install --no-cache-dir -r requirements.txt -vvv
+RUN python3 -m pip install --no-cache-dir -r requirements.txt -vvv
 
 # Expose Odoo services
 # EXPOSE 8069 8071
