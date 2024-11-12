@@ -56,6 +56,21 @@ WORKDIR /odoo
 
 COPY odoo.conf /etc/odoo/odoo.conf
 
+# RUN python3 -m pip --version
+# Vérifier la version de Python
+RUN python3 --version
+
+# Vérifier le chemin vers python3
+RUN which python3
+RUN which pip
+
+# Installer pip pour Python 3.11, si nécessaire
+RUN python3 -m ensurepip --upgrade
+
+# Mettre à jour pip
+RUN python3 -m pip install --upgrade pip
+
+# Vérifier la version de pip
 RUN python3 -m pip --version
 
 # Installer les dépendances Python pour Odoo
