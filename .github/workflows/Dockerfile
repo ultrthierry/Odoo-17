@@ -56,7 +56,7 @@ WORKDIR /odoo
 COPY odoo.conf /etc/odoo/odoo.conf
 
 # Installer les dépendances Python pour Odoo
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt -vvv
 
 # Expose Odoo services
 # EXPOSE 8069 8071
