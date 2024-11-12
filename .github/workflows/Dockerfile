@@ -33,8 +33,8 @@ RUN apt-get update && apt-get install -y \
 
 # RUN pip3 install --upgrade "pip<21.0"
 
-# Mettre à jour pip et installer Odoo ou autres dépendances
-RUN python3.10 -m pip install --upgrade pip
+# Mettre à jour pip et setuptools
+RUN python3 -m pip install --upgrade pip setuptools
 
 # Assurez-vous que `python` et `python3` pointent vers Python 3.10
 # RUN ln -sf /usr/local/bin/python3.10 /usr/local/bin/python
