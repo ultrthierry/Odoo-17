@@ -48,6 +48,8 @@ ARG GITHUB_USER=ultrthierry
 ARG ODOO_REPO=odoo-17
 ARG ODOO_BRANCH=main
 
+RUN groupadd -r odoo17 && useradd -r -g odoo odoo17
+
 # Cloner la branche spécifique de votre dépôt Odoo
 RUN git clone -b ${ODOO_BRANCH} https://github.com/${GITHUB_USER}/${ODOO_REPO}.git /odoo
 
@@ -56,7 +58,7 @@ RUN git clone -b ${ODOO_BRANCH} https://github.com/${GITHUB_USER}/${ODOO_REPO}.g
 WORKDIR /odoo
 
 COPY odoo.conf /etc/odoo/odoo.conf
-RUN chown odoo:odoo /etc/odoo/odoo.conf
+RUN chown odoo17:odoo17 /etc/odoo/odoo.conf
 RUN ls -l /etc/odoo/odoo.conf
 
 # RUN python3 -m pip --version
